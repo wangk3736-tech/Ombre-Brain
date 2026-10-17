@@ -69,9 +69,11 @@ COPY kernel/ ./kernel/
 COPY README.md ./README.md
 COPY CHANGELOG.md ./CHANGELOG.md
 
-# Persistent mount point: bucket data
-# 持久化挂载点：记忆数据
-VOLUME ["/app/buckets"]
+# Persistent mount point: bucket data (/app/buckets)
+# 持久化挂载点：记忆数据（/app/buckets）
+# 不使用 VOLUME 指令（Railway 不支持）。Docker/compose 用户请显式挂载卷：
+#   docker run -v ombre-data:/app/buckets ...
+# Railway 上请在服务里添加 Railway Volume，挂载路径 /app/buckets。
 
 # Default to streamable-http for container (remote access)
 # 容器场景默认用 streamable-http
